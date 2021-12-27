@@ -51,10 +51,12 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           echo ${{ secrets.name }}
-  DEV:
+  Deploy:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     needs: [build]
+    environment: 
+         name: DEV
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -66,10 +68,12 @@ jobs:
         run: echo ${{secrets.SUB_ID}}
         
     
-  QA:
+  Deploy1:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     needs: [build]
+    environment: 
+         name: QA
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -80,7 +84,7 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
 
-  UAT:
+  Deploy2:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     needs: [build]
