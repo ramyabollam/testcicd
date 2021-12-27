@@ -1,0 +1,50 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: compile
+        run: echo Hello, world!
+        
+DEV:
+    runs-on: ubuntu-latest
+    needs: [build]
+    environment: 
+         name: DEV
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run a one-line script
+        run: echo Hello, world!
+UAT:
+    runs-on: ubuntu-latest
+    needs: [build]
+    environment: 
+         name: UAT
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run a one-line script
+        run: echo Hello, world!
+        
+QA: 
+    runs-on: ubuntu-latest
+    needs: [build]
+    environment: 
+         name: QA
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run a one-line script
+        run: echo Hello, world!
+       
